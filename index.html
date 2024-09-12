@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Personalizado para Justine</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            color: #ff8c94; /* Tono rosa suave */
+            text-shadow: 2px 2px 4px rgba(255, 105, 135, 0.6); /* Sombras de texto suaves */
+        }
+        h2 {
+            font-size: 2.5em;
+            color: #ffb84d; /* Color ámbar cálido */
+            text-shadow: 1px 1px 3px rgba(255, 184, 77, 0.6); /* Sombras para el reloj */
+        }
+        p {
+            font-size: 1.7em;
+            font-style: italic;
+            color: #ff6f61; /* Color coral */
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(255, 111, 97, 0.6); /* Sombras suaves para el mensaje */
+        }
+    </style>
+</head>
+<body>
+    <h1>Para mi Reina hermosa</h1>
+    <h2 id="reloj"></h2>  <!-- Aquí se mostrará la hora -->
+    <p id="mensaje"></p>  <!-- Aquí se mostrará el mensaje de amor -->
+
+    <script>
+        // Lista de mensajes de amor
+        const mensajes_de_amor = [
+            "Justine, eres mi mundo entero.",
+            "Cada segundo contigo es especial, Justine.",
+            "Te amo más de lo que las palabras pueden decir.",
+            "Siempre estaré a tu lado, Justine.",
+            "Tu sonrisa ilumina mi vida.",
+            "Gracias por ser tan increíble, Justine.",
+            "Eres lo mejor que me ha pasado.",
+        ];
+
+        // Función para actualizar el reloj en formato 12 horas (AM/PM)
+        function actualizarReloj() {
+            const ahora = new Date();
+            let horas = ahora.getHours();
+            const minutos = ahora.getMinutes().toString().padStart(2, '0');
+            const segundos = ahora.getSeconds().toString().padStart(2, '0');
+            const ampm = horas >= 12 ? 'PM' : 'AM';
+
+            horas = horas % 12;  // Convierte la hora al formato 12 horas
+            horas = horas ? horas : 12; // Si la hora es 0, muestra 12 en vez de 0
+
+            const horaActual = `${horas}:${minutos}:${segundos} ${ampm}`;
+            document.getElementById('reloj').textContent = horaActual;
+        }
+
+        // Función para mostrar un mensaje aleatorio
+        function mostrarMensajeAleatorio() {
+            const mensaje = mensajes_de_amor[Math.floor(Math.random() * mensajes_de_amor.length)];
+            document.getElementById('mensaje').textContent = mensaje;
+        }
+
+        // Actualizar el reloj cada segundo
+        setInterval(actualizarReloj, 1000);
+
+        // Cambiar el mensaje cada 5 segundos
+        setInterval(mostrarMensajeAleatorio, 5000);
+
+        // Inicializar el reloj y el primer mensaje
+        actualizarReloj();
+        mostrarMensajeAleatorio();
+    </script>
+</body>
+</html>
+
+        
